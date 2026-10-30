@@ -46,7 +46,7 @@ while ($true) {
         $percent = $battery.EstimatedChargeRemaining
         $status = $battery.BatteryStatus 
 
-        if ($percent -ge 99 -and $status -ne 1) {
+        if ($percent -ge 100 -and $status -ne 1) {
             Show-FullScreenAlert
             Start-Sleep -Seconds 300
         } else {
