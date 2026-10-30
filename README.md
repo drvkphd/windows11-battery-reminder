@@ -15,6 +15,7 @@ A lightweight, completely native Windows 11 utility that monitors your laptop's 
 
 ### Step 1: Save the Script
 1. Create a folder on your computer named `C:\Scripts\`.
+
 2. Save the `BatteryNotifier.ps1` file from this repository inside that folder.
 <img width="1610" height="574" alt="image" src="https://github.com/user-attachments/assets/46ef8ed7-73aa-486e-bd35-9582f33e7697" />
 
@@ -24,8 +25,10 @@ Because modern laptops utilize Sleep and Hibernate instead of full shutdowns, we
 
 1. Open the Start Menu, search for **Task Scheduler**, and open it.
 <img width="716" height="580" alt="image" src="https://github.com/user-attachments/assets/a5b911b2-b8e8-4431-aba7-7a567a95c472" />
+
 2. In the right-hand panel, click **Create Task...**
 <img width="862" height="770" alt="image" src="https://github.com/user-attachments/assets/df1394bb-72dc-4c2b-b48a-7b855362a230" />
+
 3. Configure the following tabs:
 
 
