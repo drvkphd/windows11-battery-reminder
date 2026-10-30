@@ -63,3 +63,5 @@ Click **New...** and configure a program launch:
 4. Click **OK** to save the task. 
 5. To activate it right away without restarting, right-click your new task in the list and click **Run**. Or double click your taks to open a new window to find hte run command in the right pane.
 <img width="2508" height="1016" alt="image" src="https://github.com/user-attachments/assets/9a0923d2-2730-48a7-ac4f-58e90ea00d6d" />
+6. In the properties tab make sure to select to **Configure for:** Windows 10
+<img width="1262" height="952" alt="image" src="https://github.com/user-attachments/assets/1e17ba25-1e47-44d7-b4ce-62dd2d6cd35b" />
