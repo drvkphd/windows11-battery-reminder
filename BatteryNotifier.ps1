@@ -129,9 +129,9 @@ function Show-FullScreenAlert {
     $timer.Interval = 2000
     $timer.Add_Tick({
         $battery = Get-CimInstance -ClassName Win32_Battery
-        $status = $battery.BatteryStatus
+        $battStatus = $battery.BatteryStatus
         # Close if unplugged (status 1), charge drops below 99%, or a bypass was set externally
-        if ($status -eq 1 -or $battery.EstimatedChargeRemaining -lt 99 -or (Test-Bypass)) {
+        if ($battStatus -eq 1 -or $battery.EstimatedChargeRemaining -lt 99 -or (Test-Bypass)) {
             $timer.Stop()
             $form.Close()
         }
@@ -153,17 +153,19 @@ while ($true) {
 
         $battery = Get-CimInstance -ClassName Win32_Battery
         $percent = $battery.EstimatedChargeRemaining
-        $status = $battery.BatteryStatus
+        $battStatus = $battery.BatteryStatus
 
         # Triggers at 100% while plugged in (status is not 1 = discharging)
-        if ($percent -ge 100 -and $status -ne 1) {
+        if ($percent -ge 100 -and $battStatus -ne 1) {
+            Add-Content -Path (Join-Path $PSScriptRoot 'notifier_error.log') -Value ("[{0}] ALERT shown: {1}%, status {2}" -f (Get-Date -Format 'yyyy-MM-dd HH:mm:ss'), $percent, $battStatus) -ErrorAction SilentlyContinue
             Show-FullScreenAlert
             if (-not (Test-Bypass)) { Start-Sleep -Seconds 300 }
         } else {
             Start-Sleep -Seconds 15
         }
     } catch {
-        # Fallback interval if a query fails momentarily
+        # Fallback interval if a query fails momentarily; record why (added 18 Nov 2026)
+        Add-Content -Path (Join-Path $PSScriptRoot 'notifier_error.log') -Value ("[{0}] {1}" -f (Get-Date -Format 'yyyy-MM-dd HH:mm:ss'), $_.Exception.Message) -ErrorAction SilentlyContinue
         Start-Sleep -Seconds 15
     }
 }
